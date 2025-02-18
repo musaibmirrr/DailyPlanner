@@ -1,12 +1,18 @@
-export default function Navbar() {
+import { NavLink } from "react-router-dom";
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
+
+export default function NavbarComponent() {
   return (
     <>
-      <nav  style={{backgroundColor : '#0A0908'}}>
-        <li className="text-white d-flex justify-content-between py-4" style={{fontFamily : "monospace",fontSize : '20px'}}>
-          <ul className="">DailyToDo's 📝</ul>
-          <ul className="px-4">@Your own E-Planner!</ul>
-        </li>
-      </nav>
+
+      <Navbar expand="lg" className="bg-dark" style={{height : '60px'}}>
+        <Container>
+          <NavLink to={'/'} className="text-warning" style={{textDecoration : 'none'}}> ➜ DailyPlanner 📝</NavLink>
+          <span className="text-light">@Baxture Task 1</span>
+          <span className="text-light">{new Date().toDateString()}</span>
+        </Container>
+      </Navbar>
     </>
   );
 }

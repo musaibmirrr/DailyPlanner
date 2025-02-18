@@ -10,3 +10,6 @@
 5. Daily Task Reset & Continuation When a new day starts: The same list of tasks is displayed. All tasks are reset to unchecked, regardless of their previous status. Users continue working on the same tasks in the new day.
 
 6. Tech Stack Frontend: React.js Global State Management: Context API Styling: Bootstrap CSS
+
+
+7. Task 1 Add On's : Dashboard for daily task progress, Manual next day button.

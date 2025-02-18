@@ -14,7 +14,7 @@ export default function ToDoForm({ todos, setTodo }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (value.length) {
-      setTodo([...todos, { body: value.toLowerCase(), id: uuidv4(), isCompleted: false }]);
+      setTodo([...todos, { body: value, id: uuidv4(), isCompleted: false,wasCompleted : 0, wasNotCompleted : 0 }]);
       validate(false);
     } else if (value.length === 0) {
       validate(true);
@@ -36,7 +36,7 @@ export default function ToDoForm({ todos, setTodo }) {
 
         <div className="mx-4">
           <div className="row g-2">
-            <div className="col-12 col-sm-8 col-lg-6">
+            <div className="col-12">
               <input
                 type="text"
                 className="border border-dark form-control"
@@ -46,7 +46,7 @@ export default function ToDoForm({ todos, setTodo }) {
                 value={value}
               />
             </div>
-            <div className="col-12 col-sm-4 col-lg-6">
+            <div className="col-12">
               <button
                 type="submit"
                 onClick={handleSubmit}

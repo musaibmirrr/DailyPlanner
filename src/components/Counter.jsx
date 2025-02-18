@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { Container, Row, Col } from "react-bootstrap";
 
 export default function Counter({ todos, reset }) {
   let count = useRef(0);
@@ -17,17 +18,17 @@ export default function Counter({ todos, reset }) {
     if (userInput) {
       reset(
         todos.map((t) => {
-          if(t.isCompleted === true){
-            t.wasCompleted ++
-          }else if(t.isCompleted === false){
-            t.wasNotCompleted ++
+          if (t.isCompleted) {
+            t.wasCompleted++;
+          } else {
+            t.wasNotCompleted++;
           }
           return { ...t, isCompleted: false };
         })
       );
     }
 
-    // here setDay logic
+    // Update day
     setDay((prevDay) => {
       const newDay = prevDay + 1;
       localStorage.setItem("day", newDay);
@@ -51,70 +52,71 @@ export default function Counter({ todos, reset }) {
     const lastSavedDate = localStorage.getItem("lastDate");
     const today = new Date().toDateString();
 
-
-    // prompt after day logic
+    // Prompt after day change
     if (!lastSavedDate) {
       setDay(1);
       localStorage.setItem("lastDate", today);
-    } else {
-      if (lastSavedDate !== today) {
-        let userInput = confirm(
-          "Day is over, do you wanna reset all task or continue?"
+    } else if (lastSavedDate !== today) {
+      let userInput = confirm(
+        "Day is over, do you wanna reset all task or continue?"
+      );
+
+      if (userInput) {
+        reset(
+          todos.map((t) => {
+            if (t.isCompleted) {
+              t.wasCompleted++;
+            } else {
+              t.wasNotCompleted++;
+            }
+            return { ...t, isCompleted: false };
+          })
         );
-
-        if (userInput) {
-          reset(
-            todos.map((t) => {
-              if(t.isCompleted === true){
-                t.wasCompleted ++
-              }else if(t.isCompleted === false){
-                t.wasNotCompleted ++
-              }
-              return { ...t, isCompleted: false };
-            })
-          );
-        }
-
-        // here setDay logic
-        setDay((prevDay) => {
-          const newDay = prevDay + 1;
-          localStorage.setItem("day", newDay);
-          return newDay;
-        });
-        localStorage.setItem("lastDate", today);
       }
+
+      setDay((prevDay) => {
+        const newDay = prevDay + 1;
+        localStorage.setItem("day", newDay);
+        return newDay;
+      });
+
+      localStorage.setItem("lastDate", today);
     }
   }, []);
 
   return (
-    <>
-      <header className="d-flex justify-content-between align-items-center mx-4 my-4 ">
-        <span className="btn btn-dark">{time} 🕒</span>
-        <span className="btn btn-light">
-          <span
-            style={{ color: count.current < todos.length ? "red" : "green" }}
-          >
-            {count.current}{" "}
+    <Container>
+      <Row className="text-center my-4">
+        <Col xs={6} sm={6} md={3} className="mb-2">
+          <span className="btn btn-dark w-100">{time} 🕒</span>
+        </Col>
+        <Col xs={6} sm={6} md={3} className="mb-2">
+          <span className="btn btn-light w-100">
+            <span
+              style={{ color: count.current < todos.length ? "red" : "green" }}
+            >
+              {count.current}{" "}
+            </span>
+            / <span style={{ color: "green" }}>{todos.length}</span> Completed
           </span>
-          / <span style={{ color: "green" }}>{todos.length}</span> Completed
-        </span>
-        <span
-          className="btn btn-dark"
-          onDoubleClick={() => {
-            localStorage.setItem('day',1)
-            setDay(1);
-          }}
-        >
-          Day {day} ⌛
-        </span>
-        <button
-          className="btn btn-warning"
-          style={{ cursor: "pointer" }}
-          onClick={skipDay}
-        >
-          Next
-        </button>
-      </header>
-    </>
+        </Col>
+        <Col xs={6} sm={6} md={3} className="mb-2">
+          <span
+            className="btn btn-dark w-100"
+            onDoubleClick={() => {
+              localStorage.setItem("day", 1);
+              setDay(1);
+            }}
+          >
+            Day {day} ⌛
+          </span>
+        </Col>
+        <Col xs={6} sm={6} md={3} className="mb-2">
+          <button className="btn btn-warning w-100" onClick={skipDay}>
+            Next
+          </button>
+        </Col>
+      </Row>
+    </Container>
   );
 }

@@ -5,7 +5,7 @@ function CardComponent({ taskItem }) {
     <Card style={{ margin: "10px", marginLeft: "5px" }}>
       <Card.Body>
         <Card.Title>
-          <span className="text-warning"> Task : {taskItem.body}</span>
+          <span className="text-primary"> Task : {taskItem.body}</span>
         </Card.Title>
         <Card.Text>
           <span className="text-success">

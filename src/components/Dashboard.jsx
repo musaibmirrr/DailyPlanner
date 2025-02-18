@@ -47,7 +47,7 @@ export default function Dashboard() {
       {showScrollTopButton && (
         <button
           onClick={scrollToTop}
-          className="btn btn-warning position-fixed"
+          className="btn btn-primary position-fixed"
           style={{
             bottom: "20px",
             right: "20px",

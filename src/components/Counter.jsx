@@ -112,7 +112,7 @@ export default function Counter({ todos, reset }) {
           </span>
         </Col>
         <Col xs={6} sm={6} md={3} className="mb-2">
-          <button className="btn btn-warning w-100" onClick={skipDay}>
+          <button className="btn btn-primary w-100" onClick={skipDay}>
             Next
           </button>
         </Col>

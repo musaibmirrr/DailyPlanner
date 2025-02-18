@@ -89,7 +89,7 @@ export default function ToDoItem({ list, removeTodo, completeTodo }) {
       {showScrollTopButton && (
         <button
           onClick={scrollToTop}
-          className="btn btn-warning position-fixed"
+          className="btn btn-primary position-fixed"
           style={{
             bottom: "60px",
             right: "20px",

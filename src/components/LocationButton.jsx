@@ -1,12 +1,12 @@
 import { useLocation,Link } from "react-router-dom";
 export default function LocationButton() {
     const location = useLocation(); // Now this is inside Router
-  
+
     return (
       location.pathname !== '/dashboard' && (
-        <Link 
+        <Link
           to="/dashboard"
-          className="btn btn-warning position-fixed" 
+          className="btn btn-primary position-fixed"
           style={{ bottom: "20px", right: "20px" }}
         >
           Go to Dashboard

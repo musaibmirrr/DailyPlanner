@@ -91,7 +91,7 @@ export default function Counter({ todos, reset }) {
           <span className="btn btn-dark w-100">{time} 🕒</span>
         </Col>
         <Col xs={6} sm={6} md={3} className="mb-2">
-          <span className="btn btn-light w-100">
+          <span className="btn btn-dark w-100">
             <span
               style={{ color: count.current < todos.length ? "red" : "green" }}
             >
@@ -112,7 +112,7 @@ export default function Counter({ todos, reset }) {
           </span>
         </Col>
         <Col xs={6} sm={6} md={3} className="mb-2">
-          <button className="btn btn-primary w-100" onClick={skipDay}>
+          <button className="btn btn-dark w-100" onClick={skipDay}>
             Next
           </button>
         </Col>
